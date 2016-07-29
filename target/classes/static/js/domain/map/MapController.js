@@ -14,10 +14,11 @@ angular.module('app').controller("MapController", ["MapService", function(MapSer
 	
 	
 	//Sample data
-	var jacksonville = new google.maps.Marker({
-	        map: map,
-	        position: {lat: 30.3322, lng: -81.6557}
-	      });
+	//var jacksonville = new google.maps.Marker({
+	  //      map: map,
+	    //    position: {lat: 30.3322, lng: -81.6557}
+	      //});
+	var jacksonville = MapService.getMarkerByCityName("Jacksonville")
 	
 	var miami = new google.maps.Marker({
         map: map,
@@ -46,14 +47,23 @@ angular.module('app').controller("MapController", ["MapService", function(MapSer
     
 	
 	//Add lines manually
-    ctrl.addPoly(jacksonville, miami, '#CC0099');
+    //ctrl.addPoly(jacksonville, miami, '#CC0099');
     
-    ctrl.addPoly(miami, tallahassee, '#AA1100');
+    MapService.getMarkerByCityName(map, "Jacksonville").then(function(marker) {
+    	ctrl.addPoly(miami, marker, '#CC0099');
+    })
+    
+    //ctrl.addPoly(miami, tallahassee, '#AA1100');
+    
+    MapService.getMarkerByCityName(map, "Miami").then(function(marker) {
+    	ctrl.addPoly(tallahassee, marker, 'AA1100');
+    })
 
-    
     //Add lines from web service
 	MapService.getMarkerByCityName(map, "Orlando").then(function(marker) {
 		ctrl.addPoly(tallahassee, marker, '#FF3388');
 	})
+	
+	
 
 }]);

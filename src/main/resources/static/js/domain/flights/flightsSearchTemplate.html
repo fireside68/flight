@@ -1,0 +1,51 @@
+<div class="container" style="height: 100vh;">
+	<div class="col-md-10 col-md-10-offset-1" id="flightsTable">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th> </th>
+					<th>Origin</th>
+					<th>Destination</th>
+					<th>Flight Time</th>
+					<th>Layover</th>
+			</thead>
+
+			<tr
+				ng-repeat="flight in filteredFlights = (flights | filter: {origin: origin, destination: destination})"
+				ng-click="flightsController.getFlight(flight)">
+				<td><a ng-href="#/flights/{{flight}}"><span class="glyphicon glyphicon-plane" aria-hidden="true"></span></a></td>
+				<td>{{flight.origin}}</td>
+				<td>{{flight.destination}}</td>
+				<td>{{flight.flightTime}}</td>
+				<td>{{flight.offset}}</td>
+			</tr>
+		</table>
+		<h1 style="color: red;" ng-hide="filteredFlights.length">You
+			ain't goin NOWHERE</h1>
+
+	</div>
+
+	<div class="col-md-12">
+		<h2>Search Available Flights</h2>
+		<div id="flightSearch" class="flex-container">
+			<div class="row">
+				<div class="input-group col-md-5">
+					<input type="text" class="  search-query form-control"
+						placeholder="Origin" ng-model="origin" /> <span
+						class="input-group-btn"> </span>
+				</div>
+				<div class="input-group col-md-5">
+					<input type="text" class="  search-query form-control"
+						placeholder="Destination" ng-model="destination" /> <span
+						class="input-group-btn"> </span>
+				</div>
+				<div id="button" class="col-md-2">
+					<button class="btn btn-danger" type="button">
+						<span class=" glyphicon glyphicon-search"></span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>

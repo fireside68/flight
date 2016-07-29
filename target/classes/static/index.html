@@ -1,32 +1,84 @@
 <!DOCTYPE html>
 <html ng-app="app">
 <head>
-    <meta charset="ISO-8859-1">
-    <title>Example</title>
-    
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWbiIw-BcxMf5fWjsjyJvGfn6h1ezXj_Q&libraries=geometry"></script>
-    
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<meta charset="ISO-8859-1">
+<title>Example</title>
 
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    
-    <link href="css/coreStyle.css" rel="stylesheet">
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.js"></script>
-    
-    <script src="js/core/app.js"></script>
-    <script src="js/core/constants.js"></script>
-        
-    <script src="js/core/routes.js"></script>
-    
-    <script src="js/domain/map/MapController.js"></script>
-    <script src="js/domain/map/MapService.js"></script>
-    
-    
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWbiIw-BcxMf5fWjsjyJvGfn6h1ezXj_Q&libraries=geometry"></script>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+	integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+	crossorigin="anonymous"></script>
+
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+	crossorigin="anonymous">
+<script type="text/javascript"
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<link href="css/coreStyle.css" rel="stylesheet">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.js"></script>
+
+<script src="js/core/app.js"></script>
+<script src="js/core/constants.js"></script>
+
+<script src="js/core/routes.js"></script>
+<script src="js/domain/home/HomeService.js"></script>
+<script src="js/domain/home/HomeController.js"></script>
+<script src="js/domain/map/MapController.js"></script>
+<script src="js/domain/map/MapService.js"></script>
+<script src="js/domain/user/UserController.js"></script>
+<script src="js/domain/user/UserService.js"></script>
+<script src="js/domain/login/LoginController.js"></script>
+<script src="js/domain/login/LoginService.js"></script>
+<script src="js/domain/register/RegisterController.js"></script>
+<script src="js/domain/register/RegisterService.js"></script>
+<script src="js/domain/flights/FlightsService.js"></script>
+<script src="js/domain/flights/FlightsController.js"></script>
+<script src="js/domain/flights/BookedFlightController.js"></script>
+
+
 </head>
+<header>
+	<div class="flex-container" id="headercontainer">
+		<div class="row">
+			<div class="flex-item">
+				<img src="img/floridabanner.jpg"
+					style="background-position: center;">
+			</div>
+		</div>
+	</div>
+	<nav class="navbar navbar-light bg-faded" style="margin-left: 150px;">
+  <a class="navbar-brand" href="#">Flight Reservation</a>
+  <ul class="nav navbar-nav">
+    <li class="nav-item active">
+      <a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#flights">Flights</a>
+    </li>
+    <li class="nav-item" ng-model="LoginService.isLoggedIn">
+      <a class="nav-link" href="#login">Login</a>
+    </li>
+    <li class="nav-item" ng-model="LoginService.isLoggedIn">
+    <a class="nav-link" href="#user">User Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#register">Sign Up</a>
+    </li>
+  </ul>
+</nav>
+</header>
 <body>
-	<ng-view></ng-view>
+	<div class="container-fluid">
+		<ng-view></ng-view>
+	</div>
 </body>
 </html>

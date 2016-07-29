@@ -1,0 +1,18 @@
+
+<div class="col-md-10 col-md-10-offset-1" id="flightsTable">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Origin</th>
+				<th>Destination</th>
+				<th>Flight Time</th>
+				<th>Layover</th>
+		</thead>
+		<tr ng-repeat="flight in flights">
+			<td>{{flight.origin}}</td>
+			<td>{{flight.destination}}</td>
+			<td>{{flight.flightTime}}</td>
+			<td>{{flight.offset}}</td>
+		</tr>
+	</table>
+</div>

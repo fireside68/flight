@@ -24,24 +24,24 @@ The offset is the number of hours the flight waits from the beginning of the day
 
 
 [SET UP]
-Create a schema named "ftd_flight" through mysql workbench
+Create a schema named "ftd_flight" through mysql workbench x
 
-Run the project to generate tables
+Run the project to generate tables x
 
-Execute the contents of location.sql to populate the locations table
+Execute the contents of location.sql to populate the locations table x
 
 
 [PROJECT REQUIREMENTS]
 
-Create a website where any visitor can see the up to date list of available flights
+Create a website where any visitor can see the up to date list of available flights x
 
-The list of available flights must updated in real time
+The list of available flights must updated in real time x
 
-Allow a user to create a profile and log in to that profile
+Allow a user to create a profile and log in to that profile x
 
-If a user logs in, allow them to search for flights between an origin and destination city
+If a user logs in, allow them to search for flights between an origin and destination city x
 
-The results of this search must be updated in real time
+The results of this search must be updated in real time x
 
 The app must find a flight or series of flights (in the case of layovers) that will get the user from the origin to the destination the fastest
 
