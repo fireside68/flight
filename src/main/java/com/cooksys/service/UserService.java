@@ -40,22 +40,16 @@ public class UserService {
 				
 	}
 	
-	public LoginResponse loginUser(User user){
-		LoginResponse response = new LoginResponse();
+	public User loginUser(User user){
+		User response = new User();
 		if(repo.findByUsername(user.getUsername()) == null){
-			response.setUsername("unregistered");
-			response.setIsAdmin(false);
-			response.setLoggedIn(false);
+			response.setUsername("unregistered");			
 			return response;
 		} else if(repo.findByUsernameAndPassword(user.getUsername(), user.getPassword()) == null){
 				response.setUsername("invalid");
-				response.setIsAdmin(false);
-				response.setLoggedIn(false);
 				return response;
 			} else 
-				response.setUsername(user.getUsername());
-				response.setLoggedIn(true);
-				response.setIsAdmin(false);
+				response = repo.findByUsername(user.getUsername());
 				return response;
 	}
 	public User addNewUser(User user){
@@ -66,11 +60,27 @@ public class UserService {
 	}
 	
 	public User updateUser(User user){
-		User temp = repo.findByUsername(user.getUsername());
-		user.setId(temp.getId());
-		user.setDateUpdated(new Date());
-		repo.save(user);
-		return user;
+		User temp = new User();
+		temp.setId(user.getId());
+		if(user.getUsername() != null){
+			temp.setUsername(user.getUsername());
+		}
+		if(user.getPassword() != null){
+			temp.setPassword(user.getPassword());
+		}
+		if(user.getFirstName() != null) {
+			temp.setFirstName(user.getFirstName());
+		}
+		if(user.getLastName() != null) {
+			temp.setLastName(user.getLastName());
+		}
+		if(user.getEmail() != null){
+			temp.setEmail(user.getEmail());
+		}
+		temp.setItinerary(user.getItinerary());
+		temp.setDateUpdated(new Date());
+		repo.save(temp);
+		return temp;
 	}
 
 
@@ -78,6 +88,11 @@ public class UserService {
 		User temp = repo.findByUsername(username);
 		List<Itinerary> list = temp.getItinerary();
 		return list;
+	}
+
+
+	public User getUserById(Long id) {
+		return repo.findOne(id);
 	}
 	
 }

@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.cooksys.pojo.Flight;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="trip")
 public class Trip {
@@ -30,12 +33,25 @@ public class Trip {
 	private Long offset;
 	
 	@ManyToMany(mappedBy="flights")
+	@JsonIgnore
 	private List<Itinerary> itineraries;
 
 	public Trip() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	public Trip(String origin, String destination, Long flightTime, Long offset) {
+		super();
+		this.origin = origin;
+		this.destination = destination;
+		this.flightTime = flightTime;
+		this.offset = offset;
+	}
+
+
 
 	public Trip(Long id, String origin, String destination, Long flightTime, Long offset) {
 		this.id = id;
@@ -93,6 +109,11 @@ public class Trip {
 		this.itineraries = itineraries;
 	}
 	
-	
+	public void transfer(Flight flight){
+		this.origin = flight.getOrigin();
+		this.destination = flight.getDestination();
+		this.flightTime = flight.getFlightTime();
+		this.offset = flight.getOffset();
+	}
 
 }

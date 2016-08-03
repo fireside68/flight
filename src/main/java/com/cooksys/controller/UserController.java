@@ -22,6 +22,11 @@ public class UserController {
 	@Autowired
 	private UserService userServ;
 	
+	@RequestMapping("/getUserById/{id}")
+	public @ResponseBody User getUserById(Long id){
+		return userServ.getUserById(id);
+	}
+	
 	@RequestMapping("lookupEmail/{email}")
 	public @ResponseBody User findByEmail(@PathVariable String email){
 		return userServ.findByEmail(email);
@@ -38,7 +43,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/loginUser", method = RequestMethod.POST)
-	public @ResponseBody LoginResponse loginUser(@RequestBody User user){
+	public @ResponseBody User loginUser(@RequestBody User user){
 		return userServ.loginUser(user);
 	}
 	

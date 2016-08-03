@@ -4,10 +4,11 @@ angular
 				'LoginController',
 				[
 						'LoginService',
+						'UserService',
 						'$location',
 						'$window',
 						'$timeout',
-						function(LoginService, $location, $window, $timeout) {
+						function(LoginService, UserService, $location, $window, $timeout) {
 
 							this.isLoggedIn = LoginService.isLoggedIn
 							
@@ -22,18 +23,20 @@ angular
 										.loginUser(login)
 										.then(
 												function(result) {
-													this.response = result.data;
-													if (this.response.username === 'unregistered') {
+													var response = result.data;
+													if (response.username === 'unregistered') {
 														$location
 																.path('/login/userNotFoundTemplate.html');
-													} else if (this.response.username === 'invalid') {
+													} else if (response.username === 'invalid') {
 														$location
 																.path('/login/loginUnsuccessfulTemplate.html');
 													} else {														
 														LoginService
 																.setLoggedIn(true)						
 														LoginService
-																.setUsername(this.response)
+																.setUsername(response.username)
+														UserService.user = result.data
+														console.dir(UserService.user)
 														$location.path('/user')
 													}
 												});

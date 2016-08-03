@@ -2,7 +2,9 @@ package com.cooksys.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -23,7 +25,7 @@ public class Itinerary {
 	@JoinColumn(name="user_id")
 	private User user;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(
 			name="itinerary_flights",
 			joinColumns=@JoinColumn(name="itinerary_id", referencedColumnName="id"),
@@ -33,6 +35,11 @@ public class Itinerary {
 	public Itinerary() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	
+	public Itinerary(Long id, User user) {
+		this.id = id;
+		this.user = user;
 	}
 
 	public Itinerary(Long id, User user, List<Trip> flights) {

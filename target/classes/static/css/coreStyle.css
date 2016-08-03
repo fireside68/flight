@@ -1,5 +1,5 @@
 html, body {
-	background-color: #FDD023;
+	background-color: #FFFFCC;
 	height: 100%;
 	margin: 0;
 	padding: 0;
@@ -58,5 +58,5 @@ html, body {
         z-index: 3;   
     }
 #userTemplate {
-	height: 100vh;
+	height: 100vh;	
 }

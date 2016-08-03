@@ -1,9 +1,10 @@
-package com.cooksys.model;
+package com.cooksys.entity;
 
 public class Vertex {
+	
 	final private String id;
 	final private String name;
-
+	
 	public Vertex(String id, String name) {
 		this.id = id;
 		this.name = name;
@@ -44,7 +45,7 @@ public class Vertex {
 
 	@Override
 	public String toString() {
-		return name;
+		return "Vertex [name=" + name + "]";
 	}
-
+		
 }
