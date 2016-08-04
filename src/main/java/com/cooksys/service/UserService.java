@@ -14,41 +14,41 @@ import com.cooksys.repository.UserRepository;
 
 @Service
 public class UserService {
-	
+
 	@Autowired
 	private UserRepository repo;
-	
+
 	public User findByUsername(String username){
 		return repo.findByUsername(username);
 	}
-	
-	
+
+
 	public User findByWholeName(String firstName, String lastName){
 		return repo.findByFirstNameAndLastName(firstName, lastName);
 	}
-	
+
 	public List<User> listAllUsers(){
 		return repo.findAll();
 	}
-	
+
 	public User findByEmail(String email){
 		return repo.findByEmail(email);
 	}
-	
+
 	public User lostPassword(String firstName, String lastName, String email){
 		return repo.findByFirstNameAndLastNameAndEmail(firstName, lastName, email);
-				
+
 	}
-	
+
 	public User loginUser(User user){
 		User response = new User();
 		if(repo.findByUsername(user.getUsername()) == null){
-			response.setUsername("unregistered");			
+			response.setUsername("unregistered");
 			return response;
 		} else if(repo.findByUsernameAndPassword(user.getUsername(), user.getPassword()) == null){
 				response.setUsername("invalid");
 				return response;
-			} else 
+			} else
 				response = repo.findByUsername(user.getUsername());
 				return response;
 	}
@@ -58,9 +58,9 @@ public class UserService {
 		repo.save(user);
 		return user;
 	}
-	
+
 	public User updateUser(User user){
-		User temp = new User();
+		User temp = repo.findOne(user.getId());
 		temp.setId(user.getId());
 		if(user.getUsername() != null){
 			temp.setUsername(user.getUsername());
@@ -94,5 +94,5 @@ public class UserService {
 	public User getUserById(Long id) {
 		return repo.findOne(id);
 	}
-	
+
 }

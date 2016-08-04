@@ -1,5 +1,5 @@
 <div class="container" style="height: 100vh;">
-	<div class="col-md-10 col-md-10-offset-1" id="flightsTable">
+	<div class="col-md-10 col-md-10-offset-1" id="flightsTable" style="box-shadow: 10px 10px grey;">
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -20,8 +20,7 @@
 				<td>{{flight.offset}}</td>
 			</tr>
 		</table>
-		<h1 style="color: red;" ng-hide="filteredFlights.length">You
-			ain't goin NOWHERE</h1>
+		<h2 style="color: red;" ng-hide="filteredFlights.length">There are no flights available at this time</h2>
 
 	</div>
 
@@ -47,5 +46,4 @@
 			</div>
 		</div>
 	</div>
-</div>
 </div>
