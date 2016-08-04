@@ -47,31 +47,31 @@
 					<!-- Generate URL Tab -->
 					<div class="tab-pane" id="userProfile">
 						<h1>Profile</h1>
-						<form role="form" ng-submit="userController.updateUser(user)">
+						<form role="form" ng-submit="userController.updateUser(newUser)">
 							<div class="form-group">
 								<label for="title"><h3>Username (currently {{user.username}}):</h3></label> <input type="text"
 									class="form-control" id="username"
-									ng-model="userController.user.username">
+									ng-model="newUser.username">
 							</div>
 							<div class="form-group">
 								<label for="pwd"><h3>Password:</h3></label> <input type="password"
 									class="form-control" id="password"
-									ng-model="userController.user.password">
+									ng-model="newUser.password">
 							</div>
 							<div class="form-group">
 								<label for="title"><h3>Email (currently {{user.email}}):</h3></label> <input type="email"
 									class="form-control" id="email"
-									ng-model="userController.user.email">
+									ng-model="newUser.email">
 							</div>
 							<div class="form-group">
 								<label for="title"><h3>First Name (currently {{user.firstName}}):</h3></label> <input type="text"
 									class="form-control" id="firstName"
-									ng-model="userController.user.firstName">
+									ng-model="newUser.firstName">
 							</div>
 							<div class="form-group">
 								<label for="title"><h3>Last Name (currently {{user.lastName}}):</h3></label> <input type="text"
 									class="form-control" id="lastName"
-									ng-model="userController.user.lastName">
+									ng-model="newUser.lastName">
 							</div>
 							<button type="submit" class="btn btn-default">Submit</button>
 						</form>

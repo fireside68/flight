@@ -7,6 +7,7 @@ angular.module('app').service(
 					this.isLoggedIn = false
 					this.username = {}
 					this.loginUser = function(login) {
+						console.log(JSON.stringify(login))
 						return $http.post(url, login)
 					};
 

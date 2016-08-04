@@ -43,7 +43,8 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/loginUser", method = RequestMethod.POST)
-	public @ResponseBody User loginUser(@RequestBody User user){
+	public User loginUser(@RequestBody User user){
+		System.out.println(user.toString());
 		return userServ.loginUser(user);
 	}
 	

@@ -41,6 +41,7 @@ public class UserService {
 	}
 
 	public User loginUser(User user){
+		System.out.println(user.toString());
 		User response = new User();
 		if(repo.findByUsername(user.getUsername()) == null){
 			response.setUsername("unregistered");
