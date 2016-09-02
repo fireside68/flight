@@ -1,5 +1,5 @@
 html, body {
-	background-color: #FDD023;
+	background-color: #CCFFFF;
 	height: 100%;
 	margin: 0;
 	padding: 0;
@@ -11,14 +11,14 @@ html, body {
 }
 
 .jumbotron, .well {
-	 background-color:#BED028;
+	 background-color:#FFFFCC;
 }
 
 #headercontainer {
     display: flex;
-    flex-direction: row;    
-    justify-content: center; 
-    align-items: center;    
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     height: 300px;
 }
 
@@ -27,19 +27,19 @@ html, body {
         margin-top: 10px;
         padding: 0;
     }
- 
+
     #custom-search-input .search-query {
         padding-right: 3px;
         padding-right: 4px \9;
         padding-left: 3px;
         padding-left: 4px \9;
- 
+
         margin-bottom: 0;
         -webkit-border-radius: 3px;
         -moz-border-radius: 3px;
         border-radius: 3px;
     }
- 
+
     #custom-search-input button {
         border: 0;
         background: none;
@@ -53,10 +53,19 @@ html, body {
         border-radius: 3px;
         color:#D9230F;
     }
- 
+
     .search-query:focus + button {
-        z-index: 3;   
+        z-index: 3;
     }
 #userTemplate {
 	height: 100vh;
+}
+
+img {
+	border-radius: 15px 15px 15px 15px;
+	box-shadow: 5px 5px #CCCCCC;
+}
+
+h1 {
+	text-shadow: 2px 2px #CCCCCC;
 }

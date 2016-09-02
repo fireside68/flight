@@ -2,7 +2,7 @@ angular.module('app').controller('RegisterController', ['RegisterService', '$tim
 	
 	var ctrl = this
 
-	ctrl.makeNewUser = function () {
+	ctrl.addNewUser = function () {
 		var newUser = {
 		"username": ctrl.username,
 		"password": ctrl.password,
@@ -12,7 +12,7 @@ angular.module('app').controller('RegisterController', ['RegisterService', '$tim
 		}
 
 		RegisterService.addNewUser(newUser).then(function(result) {
-			RegisterService.user = result.data;
+			ctrl.user = result.data;
 			console.dir(ctrl.user)
 			$timeout(function() { $location.path('/register/redirectRegister.html') }, 1000)
 		})

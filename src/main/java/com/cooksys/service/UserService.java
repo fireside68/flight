@@ -14,48 +14,42 @@ import com.cooksys.repository.UserRepository;
 
 @Service
 public class UserService {
-	
+
 	@Autowired
 	private UserRepository repo;
-	
+
 	public User findByUsername(String username){
 		return repo.findByUsername(username);
 	}
-	
-	
+
+
 	public User findByWholeName(String firstName, String lastName){
 		return repo.findByFirstNameAndLastName(firstName, lastName);
 	}
-	
+
 	public List<User> listAllUsers(){
 		return repo.findAll();
 	}
-	
+
 	public User findByEmail(String email){
 		return repo.findByEmail(email);
 	}
-	
+
 	public User lostPassword(String firstName, String lastName, String email){
 		return repo.findByFirstNameAndLastNameAndEmail(firstName, lastName, email);
-				
+
 	}
-	
-	public LoginResponse loginUser(User user){
-		LoginResponse response = new LoginResponse();
+
+	public User loginUser(User user){
+		User response = new User();
 		if(repo.findByUsername(user.getUsername()) == null){
 			response.setUsername("unregistered");
-			response.setIsAdmin(false);
-			response.setLoggedIn(false);
 			return response;
 		} else if(repo.findByUsernameAndPassword(user.getUsername(), user.getPassword()) == null){
 				response.setUsername("invalid");
-				response.setIsAdmin(false);
-				response.setLoggedIn(false);
 				return response;
-			} else 
-				response.setUsername(user.getUsername());
-				response.setLoggedIn(true);
-				response.setIsAdmin(false);
+			} else
+				response = repo.findByUsername(user.getUsername());
 				return response;
 	}
 	public User addNewUser(User user){
@@ -64,13 +58,29 @@ public class UserService {
 		repo.save(user);
 		return user;
 	}
-	
+
 	public User updateUser(User user){
-		User temp = repo.findByUsername(user.getUsername());
-		user.setId(temp.getId());
-		user.setDateUpdated(new Date());
-		repo.save(user);
-		return user;
+		User temp = repo.findOne(user.getId());
+		temp.setId(user.getId());
+		if(user.getUsername() != null){
+			temp.setUsername(user.getUsername());
+		}
+		if(user.getPassword() != null){
+			temp.setPassword(user.getPassword());
+		}
+		if(user.getFirstName() != null) {
+			temp.setFirstName(user.getFirstName());
+		}
+		if(user.getLastName() != null) {
+			temp.setLastName(user.getLastName());
+		}
+		if(user.getEmail() != null){
+			temp.setEmail(user.getEmail());
+		}
+		temp.setItinerary(user.getItinerary());
+		temp.setDateUpdated(new Date());
+		repo.save(temp);
+		return temp;
 	}
 
 
@@ -79,5 +89,10 @@ public class UserService {
 		List<Itinerary> list = temp.getItinerary();
 		return list;
 	}
-	
+
+
+	public User getUserById(Long id) {
+		return repo.findOne(id);
+	}
+
 }

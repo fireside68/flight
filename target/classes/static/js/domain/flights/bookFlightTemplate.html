@@ -1,4 +1,4 @@
-<div class="container-fluid" style="height:100vh;">
+<div class="container-fluid bookTemplate" style="height:100vh;">
 	<div class="col-md-10 col-md-10-offset-1">
 		<div class="jumbotron">
 			<h1>Review Your Flight Details</h1>
@@ -7,13 +7,13 @@
 			<div class="container">
 	<div class="col-md-5">
 			<div class="well">
-			<h1>Departing: {{bookedFlight.origin}}</h1>
+			<h1>Departing: {{bookedFlightController.bookedFlight.origin}}</h1>
 			<br>
-			<h1>Arriving: {{bookedFlight.destination}}</h1>
+			<h1>Arriving: {{bookedFlightController.bookedFlight.destination}}</h1>
 			<br>
-			<h1>Duration: {{bookedFlight.flightTime}}</h1>
+			<h1>Duration: {{bookedFlightController.bookedFlight.flightTime}}</h1>
 			<br>
-			<h1>Layover: {{bookedFlight.offset}}</h1>
+			<h1>Departure: {{bookedFlightController.bookedFlight.offset | date : 'HH:00' }}</h1>
 			<br>
 			</div>
 		</div>

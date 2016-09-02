@@ -2,22 +2,41 @@ angular.module('app').controller(
 		'BookedFlightController',
 		[
 				'FlightsService',
+				'UserService',
 				'MapService',
 				'$routeParams',
 				'$http',
 				'$scope',
-				function(FlightsService, MapService, $routeParams, $http,
+				function(FlightsService, UserService, MapService, $routeParams, $http,
 						$scope) {
 
 					var ctrl = this
-					console.dir(FlightsService.listFlights)
-					$scope.bookedFlight = JSON.parse($routeParams.flight)
-					ctrl.getMarkerByCityName = MapService.getMarkerByCityName()
-					pointA = $scope.bookedFlight.origin
-					pointB = $scope.bookedFlight.destination
+					ctrl.locations = {}
 
-					console.dir(pointA)
-					console.dir(pointB)
+
+					ctrl.bookedFlight = JSON.parse($routeParams.flight)
+					ctrl.pointA = ctrl.bookedFlight.origin.toLowerCase()
+					ctrl.pointB = ctrl.bookedFlight.destination.toLowerCase()
+					ctrl.itinerary = FlightsService.getFlightPath(ctrl.pointA, ctrl.pointB).then(function(result){
+						ctrl.flightPath = result.data
+						console.dir(ctrl.flightPath)
+						console.dir(UserService.user)
+						return result.data
+
+						//FlightsService.upateItinerary(ctrl.flightPath)
+					})
+
+					$scope.reserveFlight = function(bookedFlight){
+						var itinerary = {
+						"trip": bookedFlight,
+						"userId": UserService.user.id
+						}
+
+						FlightsService.updateItinerary(itinerary).then(function(result){
+							ctrl.response = result.data
+							console.dir(result.data)
+						})
+					}
 
 					var map = new google.maps.Map(document
 							.getElementById('map'), {
@@ -28,13 +47,18 @@ angular.module('app').controller(
 						}
 					});
 
-					MapService.getMarkerByCityName(map, pointA).then(
-							function(marker, pointB) {
-								ctrl.addPoly(pointB, marker, '#CC0099');
+					FlightsService.getAllLocations().then(function(result){
+						ctrl.locations = result.data
+					})
+
+					MapService.getMarkerByCityName(map, ctrl.pointA).then(function(markerA) {
+							MapService.getMarkerByCityName(map, ctrl.pointB).then(
+							function(marker) {
+								ctrl.addPoly(markerA, marker, '#47167C');
 							})
+					})
 
 					ctrl.addPoly = function addPoly(pointA, pointB, color) {
-
 						geodesicPoly = new google.maps.Polyline({
 							strokeColor : color,
 							strokeOpacity : 1.0,
@@ -43,8 +67,8 @@ angular.module('app').controller(
 							map : map
 						});
 
-						geodesicPoly.setPath([ctrl.pointA.getPosition(),
-								ctrl.pointB.getPosition() ]);
+						geodesicPoly.setPath([pointA.getPosition(),
+								pointB.getPosition() ]);
 					}
 
 				} ])

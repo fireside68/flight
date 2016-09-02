@@ -17,7 +17,7 @@ angular.
           controllerAs: 'flightsController',
           resolve: {
         	  factory: function(FlightsService){
-        		  FlightsService.getFlights()
+        		  return FlightsService.getFlights()
         	  }
           }
         }).
@@ -28,7 +28,7 @@ angular.
         	resolve: {
         		factory: function($q, $rootScope, $location, LoginService, FlightsService){
         			checkRouting($q, $rootScope, $location, LoginService)
-        			FlightsService.getFlights()
+        			return FlightsService.getFlights()
         		}
         		}
         }).

@@ -1,37 +1,38 @@
-<div class="container-fluid" style="height:100vh;">
+<div class="container-fluid bookTemplate" style="height: 100vh;">
 	<div class="col-md-10 col-md-10-offset-1">
 		<div class="jumbotron">
 			<h1>Review Your Flight Details</h1>
 		</div>
 	</div>
-			<div class="container">
-	<div class="col-md-5">
+	<div class="container" style="margin-left:75px;">
+		<div class="col-md-5">
 			<div class="well">
-			<h1>Departing: {{bookedFlight.origin}}</h1>
-			<br>
-			<h1>Arriving: {{bookedFlight.destination}}</h1>
-			<br>
-			<h1>Duration: {{bookedFlight.flightTime}}</h1>
-			<br>
-			<h1>Layover: {{bookedFlight.offset}}</h1>
-			<br>
+				<h1>Departing: {{bookedFlightController.bookedFlight.origin}}</h1>
+				<br>
+				<h1>Arriving:
+					{{bookedFlightController.bookedFlight.destination}}</h1>
+				<br>
+				<h1>Duration:
+					{{bookedFlightController.bookedFlight.flightTime}}</h1>
+				<br>
+				<h1>Departure: {{bookedFlightController.bookedFlight.offset}}</h1>
+				<br>
 			</div>
 		</div>
-		<div class="col-md-6" id="map" style="width: 400px; height: 500px;"></div>
-		</div>
-		<div class="container" style="height: 200px;">
-			<h2>Is this correct?</h2>
-			<div class="btn-group">
-				<button type="button" class="btn btn-primary">Select</button>
-				<button type="button" class="btn btn-primary dropdown-toggle"
-					data-toggle="dropdown">
-					<span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu" role="menu">
-					<li><a href="#">Yes</a></li>
-					<li><a href="#flights/flightsSearchTemplate.html">No</a></li>
-				</ul>
-			</div>
+		<div class="col-md-6" id="map" style="width: 400px; height: 500px; background-color: #FFFFCC;"></div>
+	</div>
+	<div class="container" style="height: 200px;">
+		<h2>Is this correct?</h2>
+		<div class="btn-group">
+			<button type="button" class="btn btn-primary">Select</button>
+			<button type="button" class="btn btn-primary dropdown-toggle"
+				data-toggle="dropdown">
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" role="menu">
+				<li ng-click="reserveFlight(bookedFlight)"><a href="#">Yes</a></li>
+				<li><a href="#flights/flightsSearchTemplate.html">No</a></li>
+			</ul>
 		</div>
 	</div>
 </div>

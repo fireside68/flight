@@ -1,8 +1,8 @@
-<div class="container-fluid" id="userTemplate" style="height:100vh;">
+<div class="container-fluid" id="userTemplate" style="height: 100vh;">
 	<div class="col-md-10 col-md-offset-1">
 
 		<div class="jumbotron">
-			<h1>Welcome, {{username}}.</h1>
+			<h1>Welcome, {{user.username}}.</h1>
 			<a href="#/flights/flightsSearchTemplate.html">Search Flights</a>
 		</div>
 
@@ -11,36 +11,67 @@
 			<!--Unordered List of Tab Headings-->
 			<div id="content">
 				<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-					<li class="active"><a href="#userHome" data-toggle="tab">Home</a></li>
-					<li><a href="#userProfile" data-toggle="tab">User Profile</a></li>
-					<li><a href="#itinerary" data-toggle="tab">Itinerary History</a></li>
+					<li class="active"><a href="#userHome" data-toggle="tab">Profile Information</a></li>
+					<li><a href="#userProfile" data-toggle="tab">Update Profile</a></li>
+					<li><a href="#itinerary" data-toggle="tab">Itinerary
+							History</a></li>
 				</ul>
 
 				<div id="my-tab-content" class="tab-content">
 					<!-- Home Tab -->
 					<div class="tab-pane active" id="userHome">
-						<h1>Home</h1>
-						<p>Nothing Here Yet</p>
+						<div class="container userhome">
+							<div class="row">
+								<div class="col-md-10">
+									<div class="row">
+										<div class="col-md-5"><h1>Username: </h1><h2>{{user.username}}</h2></div>
+									</div>
+									<div class="row">
+									<div class="col-md-5">
+									<h1>Full Name: </h1><h2>{{user.firstName}} {{user.lastName}}</h2></div>
+									</div>
+									<div class="row">
+									<div class="col-md-5">
+									<h1>Email: </h1><h2>{{user.email}}</h2></div>
+									</div>
+									<div class="row">
+									<div class="col-md-5">
+									<h1>Last updated: </h1><h2>{{user.dateUpdated | date : 'fullDate'}}</h2></div>
+									</div>
+								</div>
+							</div>
+						</div>
+
 					</div>
 
 					<!-- Generate URL Tab -->
 					<div class="tab-pane" id="userProfile">
 						<h1>Profile</h1>
-						<form role="form" ng-submit="userController.updateUser()">
+						<form role="form" ng-submit="userController.updateUser(newUser)">
 							<div class="form-group">
-								<label for="title">Username</label> <input type="text"
-									class="form-control" id="urlTitle"
-									ng-model="userController.user.username">
+								<label for="title"><h3>Username (currently {{user.username}}):</h3></label> <input type="text"
+									class="form-control" id="username"
+									ng-model="newUser.username">
 							</div>
 							<div class="form-group">
-								<label for="pwd">Password</label> <input type="password"
-									class="form-control" id="urlDescription"
-									ng-model="userController.user.password">
+								<label for="pwd"><h3>Password:</h3></label> <input type="password"
+									class="form-control" id="password"
+									ng-model="newUser.password">
 							</div>
 							<div class="form-group">
-								<label for="title">Email</label> <input type="email"
-									class="form-control" id="urlTitle"
-									ng-model="userController.user.email">
+								<label for="title"><h3>Email (currently {{user.email}}):</h3></label> <input type="email"
+									class="form-control" id="email"
+									ng-model="newUser.email">
+							</div>
+							<div class="form-group">
+								<label for="title"><h3>First Name (currently {{user.firstName}}):</h3></label> <input type="text"
+									class="form-control" id="firstName"
+									ng-model="newUser.firstName">
+							</div>
+							<div class="form-group">
+								<label for="title"><h3>Last Name (currently {{user.lastName}}):</h3></label> <input type="text"
+									class="form-control" id="lastName"
+									ng-model="newUser.lastName">
 							</div>
 							<button type="submit" class="btn btn-default">Submit</button>
 						</form>
@@ -60,12 +91,12 @@
 										<th>Layover</th>
 									</tr>
 								</thead>
-								<tr ng-repeat="itinerary in itineraryList">
+								<tr ng-repeat="itinerary in user.itinerary">
 									<td><span class="glyphicon glyphicon-globe"></span></td>
-									<td>{{itinerary.origin}}</td>
-									<td>{{itinerary.destination}}</td>
-									<td>{{itinerary.flightTime}}</td>
-									<td>{{itinerary.offset}}</td>
+									<td>{{user.itinerary.origin}}</td>
+									<td>{{user.itinerary.destination}}</td>
+									<td>{{user.itinerary.flightTime}}</td>
+									<td>{{user.itinerary.offset}}</td>
 								</tr>
 							</table>
 						</div>
