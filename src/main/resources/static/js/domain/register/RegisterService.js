@@ -4,5 +4,5 @@ angular.module('app').service('RegisterService', ['$http', '$timeout', function(
 		
 	this.user = {}
 	
-	this.addNewUser = function(user) { return $http.post(url + 'addNewUser'), user }
+	this.addNewUser = function(user) { return $http.post(url + 'addNewUser', user) }
 }])

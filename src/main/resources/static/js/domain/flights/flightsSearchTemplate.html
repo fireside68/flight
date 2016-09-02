@@ -12,7 +12,7 @@
 
 			<tr
 				ng-repeat="flight in filteredFlights = (flights | filter: {origin: origin, destination: destination})"
-				ng-click="flightsController.getFlight(flight)">
+				ng-click="getFlight(flight)">
 				<td><a ng-href="#/flights/{{flight}}"><span class="glyphicon glyphicon-plane" aria-hidden="true"></span></a></td>
 				<td>{{flight.origin}}</td>
 				<td>{{flight.destination}}</td>

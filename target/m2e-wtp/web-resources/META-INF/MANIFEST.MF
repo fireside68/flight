@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: flight
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: student-14
+Built-By: C
 Implementation-Vendor-Id: com.cooksys
-Build-Jdk: 1.8.0_91
+Build-Jdk: 1.8.0_102
 Created-By: Maven Integration for Eclipse
 Implementation-Vendor: Pivotal Software, Inc.
 
