@@ -2,10 +2,14 @@ package com.cooksys.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -32,15 +36,17 @@ public class Trip {
 	@Column(name="offset")
 	private Long offset;
 	
-	@ManyToMany(mappedBy="flights")
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(
+				name = "itinerary_flights", 
+				joinColumns = @JoinColumn(name = "_id", referencedColumnName = "id"), 
+				inverseJoinColumns = @JoinColumn(name = "itinerary_id", referencedColumnName = "id"))
 	@JsonIgnore
 	private List<Itinerary> itineraries;
 
 	public Trip() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	
 	
 
 	public Trip(String origin, String destination, Long flightTime, Long offset) {
@@ -50,16 +56,14 @@ public class Trip {
 		this.flightTime = flightTime;
 		this.offset = offset;
 	}
-
-
-
-	public Trip(Long id, String origin, String destination, Long flightTime, Long offset) {
-		this.id = id;
-		this.origin = origin;
-		this.destination = destination;
-		this.flightTime = flightTime;
-		this.offset = offset;
+	
+	public void copy(Flight flight){
+		this.origin = flight.getOrigin();
+		this.destination = flight.getDestination();
+		this.flightTime = flight.getFlightTime();
+		this.offset = flight.getOffset();
 	}
+
 
 	public Long getId() {
 		return id;
@@ -109,11 +113,4 @@ public class Trip {
 		this.itineraries = itineraries;
 	}
 	
-	public void transfer(Flight flight){
-		this.origin = flight.getOrigin();
-		this.destination = flight.getDestination();
-		this.flightTime = flight.getFlightTime();
-		this.offset = flight.getOffset();
-	}
-
 }

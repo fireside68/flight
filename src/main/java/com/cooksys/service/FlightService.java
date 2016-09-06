@@ -40,7 +40,7 @@ public class FlightService {
 		flightList = generator.generateNewFlightList();
 	}
 	
-	public Itinerary getFlightPath(String origin, String destination){
+	public Itinerary getFlightPath(String origin, String destination) {
 		List<Edge> edges = new ArrayList<>();
 		Map<String, Vertex> vertexes = new HashMap<>();
 		List<Vertex> nodes = new ArrayList<>();
@@ -69,6 +69,7 @@ public class FlightService {
 		log.info("End: {}", vertexes.get(destination.toLowerCase()));
 		List<Vertex> path = algorithm.getPath(vertexes.get(destination.toLowerCase()));
 		log.info("Path: {}", path);
+		log.info("{}", path.size());
 		List<Trip> flights = new ArrayList<>();
 		if(path != null){
 			for(int i = 1; i < path.size(); i++){
@@ -77,7 +78,7 @@ public class FlightService {
 						if(flight.getDestination().toLowerCase().equals(path.get(i).getName())){
 							log.info("Flight: {}", flight);
 							Trip leg = new Trip();
-							leg.transfer(flight);
+							leg.copy(flight);
 							flights.add(leg);
 						}
 					}
@@ -87,6 +88,9 @@ public class FlightService {
 		
 		Itinerary itinerary = new Itinerary();
 		itinerary.setFlights(flights);
+		for(Trip tripp : flights) {
+			log.info("{}", tripp.toString());
+		}
 		return itinerary;
 	}
 	

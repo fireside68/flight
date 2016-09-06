@@ -6,7 +6,7 @@ angular.module('app').service(
 					var url = 'flight/'
 					var locUrl = 'location/'
 					var itineraryUrl = 'itinerary/'
-					
+
 					this.bookedFlight = {}
 					this.listFlights = {}
 					this.getAllLocations = function() { return $http.get(locUrl) }
@@ -14,21 +14,19 @@ angular.module('app').service(
 					this.getFlights = function() {
 						return $http.get('flights')
 					}
-					
+
 					this.getFlight = function() {
 						return this.bookedFlight
 					}
-					
+
 					this.setFlight = function(flight) {
 						this.bookedFlight = flight
 					}
-					
+
 					this.getFlightPath = function(origin, dest) {
 						return $http.get('flights/getItinerary', {params: { from : origin, to: dest }})
 					}
-					
-					this.updateItinerary = function(itinerary) { return $http.post(iUrl + 'updateItinerary', itinerary) }
-					
-					this.addItinerary = function(itinerary){}
+
+					this.updateItinerary = function(itinerary) { return $http.post(itineraryUrl + 'updateItinerary', itinerary) }
 
 				} ])

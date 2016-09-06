@@ -34,7 +34,6 @@ public class Itinerary {
 
 	public Itinerary() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	public Itinerary(Long id, User user) {
@@ -42,11 +41,6 @@ public class Itinerary {
 		this.user = user;
 	}
 
-	public Itinerary(Long id, User user, List<Trip> flights) {
-		this.id = id;
-		this.user = user;
-		this.flights = flights;
-	}
 
 	public Long getId() {
 		return id;

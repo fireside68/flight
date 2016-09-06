@@ -35,7 +35,7 @@ angular
 																.setLoggedIn(true)						
 														LoginService
 																.setUsername(response.username)
-														UserService.user = result.data
+														UserService.setUser(response)
 														console.dir(UserService.user)
 														$location.path('/user')
 													}

@@ -15,7 +15,7 @@ public class TripService {
 	
 	public void addTrip(Flight flight){
 		Trip trip = new Trip();
-		trip.transfer(flight);
+		trip.copy(flight);
 		repo.save(trip);
 	}
 

@@ -19,7 +19,7 @@ angular.module('app')
 							//$scope.$FlightsService = FlightsService
 							this.getFlights = function() {
 								//$interval(function(){
-								FlightsService.getFlights().then(
+									FlightsService.getFlights().then(
 										function(result) {
 											flightList = result.data
 											$scope.flights = result.data
