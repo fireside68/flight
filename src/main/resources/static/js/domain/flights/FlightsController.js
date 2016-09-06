@@ -9,8 +9,9 @@ angular.module('app')
 						'$http',
 						'$interval',
 						'$routeParams',
+						'$location',
 						function(FlightsService, LoginService, factory, $scope, $http, $interval,
-								$routeParams) {
+								$routeParams, $location) {
 
 							$scope.flights = factory.data
 							//var flights = $scope.flights
@@ -30,9 +31,5 @@ angular.module('app')
 
 							this.getFlights()
 
-							$scope.getFlight = function(flight) {
-								console.dir(flight)
-								$location.path('#/flights/' + flight)
-							}
 
 						} ])

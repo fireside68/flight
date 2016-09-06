@@ -21,8 +21,8 @@ public class ItineraryController {
 	private ItineraryService itinServ;
 	
 	@RequestMapping(value="/updateItinerary", method=RequestMethod.POST)
-	public void updateItinerary(@RequestBody BookingResponseModel model){
-		itinServ.addItinerary(model);
+	public void updateItinerary(@RequestBody Itinerary model){
+		itinServ.updateItinerary(model);
 	}
 	
 	@RequestMapping(value="/getItinerary/{id}")

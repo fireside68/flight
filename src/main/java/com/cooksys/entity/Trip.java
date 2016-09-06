@@ -1,5 +1,6 @@
 package com.cooksys.entity;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -36,10 +37,13 @@ public class Trip {
 	@Column(name="offset")
 	private Long offset;
 	
+	@Column(name="date_created")
+	private Date dateCreated;
+	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(
 				name = "itinerary_flights", 
-				joinColumns = @JoinColumn(name = "_id", referencedColumnName = "id"), 
+				joinColumns = @JoinColumn(name = "trip_id", referencedColumnName = "id"), 
 				inverseJoinColumns = @JoinColumn(name = "itinerary_id", referencedColumnName = "id"))
 	@JsonIgnore
 	private List<Itinerary> itineraries;
@@ -103,6 +107,14 @@ public class Trip {
 
 	public void setOffset(Long offset) {
 		this.offset = offset;
+	}
+	
+	public Date getDateCreated(){
+		return dateCreated;
+	}
+	
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
 	}
 
 	public List<Itinerary> getItineraries() {

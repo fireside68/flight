@@ -23,8 +23,8 @@ angular.module('app').service(
 						this.bookedFlight = flight
 					}
 
-					this.getFlightPath = function(origin, dest) {
-						return $http.get('flights/getItinerary', {params: { from : origin, to: dest }})
+					this.getFlightPath = function(params) {
+						return $http.get('flights/getItinerary', {params: { from : params.origin, to: params.destination }})
 					}
 
 					this.updateItinerary = function(itinerary) { return $http.post(itineraryUrl + 'updateItinerary', itinerary) }

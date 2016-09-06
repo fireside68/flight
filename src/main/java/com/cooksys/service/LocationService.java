@@ -1,5 +1,6 @@
 package com.cooksys.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +26,13 @@ public class LocationService {
 	
 	public Location get(String name) {
 		return repo.findByCity(name);
+	}
+	
+	public List<Location> getListofNames(List<String> names) {
+		List<Location> result = new ArrayList<Location>();
+		for(String name: names) {
+			result.add(repo.findByCity(name));
+		}
+		return result;
 	}
 }

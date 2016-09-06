@@ -1,8 +1,10 @@
 package com.cooksys.entity;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -24,6 +26,9 @@ public class Itinerary {
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
+	
+	@Column(name="date_created")
+	private Date dateCreated;
 	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(
@@ -56,6 +61,14 @@ public class Itinerary {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+	
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
 	}
 
 	public List<Trip> getFlights() {

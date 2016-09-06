@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.cooksys.entity.Edge;
 import com.cooksys.entity.Vertex;
 
@@ -20,6 +23,7 @@ public class Dijkstra {
 	private Set<Vertex> unsettledNodes;
 	private Map<Vertex, Vertex> predecessors;
 	private Map<Vertex, Integer> distance;
+	private Logger log = LoggerFactory.getLogger(Dijkstra.class);
 	
 	public Dijkstra(List<Vertex> nodes, List<Edge> edges) {
 		this.nodes = nodes;
@@ -34,10 +38,13 @@ public class Dijkstra {
 		distance.put(source,  0);
 		unsettledNodes.add(source);
 		while(unsettledNodes.size() > 0){
+			int counter = 1;
+			log.info("{}", counter);
 			Vertex node = getMinimum(unsettledNodes);
 			settledNodes.add(node);
 			unsettledNodes.remove(node);
 			findMinimalDistances(node);
+			counter++;
 		}
 	}
 	
@@ -117,6 +124,9 @@ public class Dijkstra {
 		}
 		path.add(step);
 		while(predecessors.get(step) != null){
+			int count = 1;
+			log.info("{}", count);
+			count++;
 			step = predecessors.get(step);
 			path.add(step);
 		}

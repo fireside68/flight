@@ -7,15 +7,15 @@
 	<div class="container" style="margin-left:75px;">
 		<div class="col-md-5">
 			<div class="well">
-				<h1>Departing: {{bookedFlightController.bookedFlight.origin}}</h1>
+				<h1>Departing: {{origin}}</h1>
 				<br>
 				<h1>Arriving:
-					{{bookedFlightController.bookedFlight.destination}}</h1>
+					{{destination}}</h1>
 				<br>
-				<h1>Duration:
-					{{bookedFlightController.bookedFlight.flightTime}}</h1>
+				<h1>Layover:
+					{{flightTime}} hours</h1>
 				<br>
-				<h1>Departure: {{bookedFlightController.bookedFlight.offset}}</h1>
+				<h1>Total Time: {{offset}} hours</h1>
 				<br>
 			</div>
 		</div>
@@ -30,7 +30,7 @@
 				<span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu" role="menu">
-				<li ng-click="reserveFlight(bookedFlight)"><a href="#">Yes</a></li>
+				<li ng-click="reserveFlight()"><a href="#">Yes</a></li>
 				<li><a href="#flights/flightsSearchTemplate.html">No</a></li>
 			</ul>
 		</div>

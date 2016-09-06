@@ -21,5 +21,30 @@ angular.module('app').service('MapService',
 				})
 
 			}
+			
+			this.getMarkersByCities = function(map, names) {
+				var n = [];
+				n.push(names[0].origin)
+				n.push(names[0].destination)
+				for (var i = 1; i < names.length; i++) {
+					n.push(names[i].destination)
+				}
+				
+				return $http.get('location/names', {params: { names : n }}).then(function(result) {
+					console.dir(JSON.stringify(result.data))
+					var res = [];
+					for (var i = 0; i < result.data.length; i++) {
+						res.push(new google.maps.Marker({
+							map : map,
+							position : {
+								lat : +result.data[i].latitude,
+								lng : +result.data[i].longitude
+							}
+						}));
+					}
+					console.dir(res)
+					return res;
+				})
+			}
 
 		} ]);

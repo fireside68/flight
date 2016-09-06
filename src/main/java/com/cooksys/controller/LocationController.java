@@ -33,5 +33,10 @@ public class LocationController {
 	{
 		return locationService.get(cityName);
 	}
+	
+	@RequestMapping("/names")
+	public List<Location> getListofNames(@RequestParam("names") List<String> citynames) {
+		return locationService.getListofNames(citynames);
+	}
 
 }

@@ -32,14 +32,17 @@ angular.
         		}
         		}
         }).
-        when('/flights/:flight', {
+        when('/flights/:origin/:destination', {
         	templateUrl: baseRoute + "flights/bookFlightTemplate.html",
         	controller: 'BookedFlightController',
         	controllerAs: 'bookedFlightController',
         	resolve: {
-        		factory: function($q, $rootScope, $location, LoginService, FlightsService){
+        		factory: function($q, $rootScope, $location, LoginService){
         			checkRouting($q, $rootScope, $location, LoginService)
-        			FlightsService.getFlight()
+        			
+        		},
+        		flightData: function(FlightsService, $route) {
+        			return FlightsService.getFlightPath($route.current.params)
         		}
         	}
         }).
